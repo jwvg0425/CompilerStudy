@@ -62,3 +62,38 @@ intermediate representation
 
 ### Semantic Analysis
 
+Semantic analyzer는 구문 트리와 심볼 테이블의 정보를 이용해 소스 프로그램이 의미적으로 일관성을 갖고 있는지 검사한다. 또 이 단계에서 타입 정보를 수집해 구문 트리 혹은 심볼 테이블에 해당 정보를 저장하며, 이 정보는 이후 중간 코드를 생성할 때 사용된다. 이 단계에서 중요한 부분은 바로 타입 체킹(type checking). 이 쪽 관련된 내용도 위의 ppt 자료에 같이 묶여서 좀 설명되어 있으니 그걸 참조.
+
+### Intermediate Code Generation
+
+컴파일러는 컴파일 단계에서 보통 하나 이상의 중간 표현형(Intermediate representation)을 사용한다. 구문 트리도 일종의 중간 표현형. 위의 분석 단계가 끝나고 나면 컴파일러는 좀 더 기계에 가까운 로우 레벨의 중간 코드를 만들어낸다. 중간 단계의 코드는 만들어내기 쉬워야 하며, target program으로의 번역도 쉬워야한다.  
+
+### Code Optimization
+
+딱히 특기할 만한 사항 없음. 최적화가 최적화지 뭐
+
+### Code Generation
+
+중간 코드를 target program으로 번역.
+
+### Symbol-Table Management
+
+컴파일러가 하는 중요한 작업 중 하나가 심볼 테이블 관리. 심볼 테이블은 각 이름들의 타입, 범위(scope), 저장되는 위치 등등의 다양한 특성을 저장한다. 그리고 이 걸 빠르고 효율적으로 관리해야 함(컴파일 타임과 직결되므로). 
+
+### Compiler-Construction Tools
+
+컴파일러를 만들 때 일반적으로 사용되는 툴로는 아래와 같은 것들이 있다.
+
+1. Parser Generator : 프로그래밍 언어의 문법에 대한 기술(Description)로부터 자동으로 구문 분석기(syntax analyzer)를 만들어준다.
+
+2. Scanner Generator : 언어의 토큰에 대한 정규 표현식 기술로부터 어휘 분석기(Lexical Analyzer)를 만들어준다.
+
+3. Syntax-directed translation engines : parse tree 탐색과 중간 코드 생성과 관련된 여러 루틴들의 집합을 제공.
+
+4. Code-generator generator : 각 연산들의 중간 코드 -> 목적 코드(target code)에 대한 번역 규칙으로부터 코드 제너레이터를 만들어낸다.
+
+5. Data-flow analysis engines : 각각의 값들이 프로그램의 한 부분에서 다른 부분으로 어떻게 전달되는지에 대한 정보를 모을 수 있게 해준다. Data-flow analysis는 코드 최적화에서 가장 핵심적인 부분.
+
+6. Compiler-Construction toolkits : 컴파일러의 다양한 부분들을 구성하기 위한 루틴들의 집합을 제공해줌.
+
+챕터 1.5부터 이어보면 됨
